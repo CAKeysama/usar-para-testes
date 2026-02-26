@@ -1,12 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=gi, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokéBiblioteca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>TESTE</h1>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="topbar">
+    <div>
+      <h1>📚 PokéBiblioteca</h1>
+      <p>Explore Pokémons como se fossem livros raros de uma coleção lendária.</p>
+    </div>
+    <button id="theme-toggle" aria-label="Alternar tema">🌙 Tema</button>
+  </header>
+
+  <main class="container">
+    <section class="controls card-glass">
+      <div class="search-wrap">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Buscar por nome ou ID (ex: pikachu, 25)"
+          autocomplete="off"
+        />
+        <button id="search-btn">Buscar</button>
+      </div>
+
+      <div class="filters">
+        <label>
+          Tipo
+          <select id="type-filter">
+            <option value="">Todos</option>
+          </select>
+        </label>
+
+        <label>
+          Ordenação
+          <select id="sort-filter">
+            <option value="id-asc">ID: crescente</option>
+            <option value="id-desc">ID: decrescente</option>
+            <option value="name-asc">Nome: A → Z</option>
+            <option value="name-desc">Nome: Z → A</option>
+          </select>
+        </label>
+
+        <label class="favorites-toggle">
+          <input id="favorites-only" type="checkbox" />
+          Somente favoritos
+        </label>
+      </div>
+    </section>
+
+    <section class="stats card-glass">
+      <p><strong id="total-count">0</strong> Pokémon(s) na estante</p>
+      <p><strong id="favorite-count">0</strong> favorito(s)</p>
+    </section>
+
+    <section id="pokemon-grid" class="pokemon-grid"></section>
+
+    <section class="pagination">
+      <button id="prev-btn">← Anterior</button>
+      <span id="page-info">Página 1</span>
+      <button id="next-btn">Próxima →</button>
+    </section>
+  </main>
+
+  <dialog id="pokemon-modal">
+    <article class="modal-content">
+      <button id="close-modal" class="close-btn">✕</button>
+      <div id="modal-body"></div>
+    </article>
+  </dialog>
+
+  <template id="pokemon-card-template">
+    <article class="pokemon-card card-glass">
+      <button class="favorite-btn" title="Favoritar">☆</button>
+      <img class="pokemon-image" alt="" loading="lazy" />
+      <div class="pokemon-meta">
+        <p class="pokemon-id"></p>
+        <h3 class="pokemon-name"></h3>
+        <div class="types"></div>
+      </div>
+      <button class="details-btn">Abrir ficha</button>
+    </article>
+  </template>
+
+  <script src="app.js" type="module"></script>
 </body>
 </html>
